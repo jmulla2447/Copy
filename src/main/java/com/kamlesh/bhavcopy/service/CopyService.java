@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Service
 public class CopyService {
-    private Map<String, CsvRecord> symbolData = new HashMap<>();
+    private final Map<String, CsvRecord> symbolData = new HashMap<>();
 
     public void loadBhavcopy(String filename) throws IOException, CsvValidationException {
         try (CSVReader reader = new CSVReader(new FileReader(filename))) {

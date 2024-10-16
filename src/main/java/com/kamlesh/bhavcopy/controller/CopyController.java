@@ -1,24 +1,29 @@
 package com.kamlesh.bhavcopy.controller;
 
 import com.kamlesh.bhavcopy.dto.CopyQueryRequest;
+import com.kamlesh.bhavcopy.dto.FileLoadException;
 import com.kamlesh.bhavcopy.service.CopyService;
+import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 public class CopyController {
 
+    public static final String FILENAME = "bhavcopy_file.csv";
     private final CopyService bhavcopyService;
 
     public CopyController(CopyService bhavcopyService) {
         this.bhavcopyService = bhavcopyService;
 
         try {
-            this.bhavcopyService.loadBhavcopy("bhavcopy_file.csv");
-        } catch (Exception e) {
-            e.printStackTrace();
+            this.bhavcopyService.loadBhavcopy(FILENAME);
+        } catch (IOException | CsvValidationException ex) {
+            throw new FileLoadException("Error loading the file: " + FILENAME, ex);
         }
     }
 

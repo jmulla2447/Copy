@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CsvRecord {
-    private Map<String, String> fields = new HashMap<>();
+    private final Map<String, String> fields = new HashMap<>();
 
     public CsvRecord(String[] headers, String[] values) {
         for (int i = 0; i < headers.length; i++) {

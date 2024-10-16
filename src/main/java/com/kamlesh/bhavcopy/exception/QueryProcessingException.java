@@ -1,14 +1,19 @@
 package com.kamlesh.bhavcopy.exception;
 
+import com.kamlesh.bhavcopy.dto.FileLoadException;
 import com.kamlesh.bhavcopy.dto.InvalidQueryCommand;
+import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.io.IOException;
 
 
 @ControllerAdvice
@@ -23,5 +28,18 @@ public class QueryProcessingException extends ResponseEntityExceptionHandler {
         badEx.setUriInfo(request.getContextPath());
 
         return new ResponseEntity(badEx, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FileLoadException.class)
+    public ResponseEntity<String> handleFileLoadException(FileLoadException ex, WebRequest request) {
+        ex.printStackTrace();
+
+        if (ex.getCause() instanceof IOException ) {
+            return new ResponseEntity<>("Error reading file: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } else if (ex.getCause() instanceof CsvValidationException) {
+            return new ResponseEntity<>("CSV Validation Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("File loading error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
