@@ -1,4 +1,4 @@
-package com.example.bhavcopy;
+package com.kamlesh.bhavcopy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

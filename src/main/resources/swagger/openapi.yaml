@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Bhavcopy API
+  description: API to query Bhavcopy data.
+  version: 1.0.0
+paths:
+  /query:
+    post:
+      summary: Query Bhavcopy Data
+      description: Query a field for a particular symbol in the Bhavcopy data.
+      requestBody:
+        description: Symbol and field to query
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopyQueryRequest'
+      responses:
+        '200':
+          description: A successful response with the queried value.
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid input
+
+components:
+  schemas:
+    CopyQueryRequest:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: The symbol to query.
+          example: "1003ISFL28"
+        field:
+          type: string
+          description: The field to query for the given symbol.
+          example: "CLOSE"
