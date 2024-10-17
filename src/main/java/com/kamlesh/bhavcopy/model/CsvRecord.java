@@ -15,4 +15,12 @@ public class CsvRecord {
     public String getField(String fieldName) {
         return fields.getOrDefault(fieldName, "Field '" + fieldName + "' not found");
     }
+
+    public String toCsvString() {
+        return String.join(",", fields.values());
+    }
+
+    public Map<String, String> getFields() {
+        return fields;
+    }
 }

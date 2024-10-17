@@ -21,7 +21,7 @@ public class CopyController {
         this.bhavcopyService = bhavcopyService;
 
         try {
-            this.bhavcopyService.loadBhavcopy(FILENAME);
+            this.bhavcopyService.loadCopy(FILENAME);
         } catch (IOException | CsvValidationException ex) {
             throw new FileLoadException("Error loading the file: " + FILENAME, ex);
         }
