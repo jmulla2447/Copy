@@ -34,7 +34,7 @@ public class QueryProcessingException extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleFileLoadException(FileLoadException ex, WebRequest request) {
         ex.printStackTrace();
 
-        if (ex.getCause() instanceof IOException ) {
+        if (ex.getCause() instanceof IOException) {
             return new ResponseEntity<>("Error reading file: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } else if (ex.getCause() instanceof CsvValidationException) {
             return new ResponseEntity<>("CSV Validation Error: " + ex.getMessage(), HttpStatus.BAD_REQUEST);

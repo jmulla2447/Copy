@@ -1,9 +1,11 @@
 package com.kamlesh.bhavcopy.service.strategy;
 
 import com.kamlesh.bhavcopy.model.CsvRecord;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class SymbolQueryStrategy implements QueryStrategy {
 
     @Override

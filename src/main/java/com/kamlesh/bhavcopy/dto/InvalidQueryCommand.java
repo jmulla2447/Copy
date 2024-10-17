@@ -7,7 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class InvalidQueryCommand { private String errMsg;
+public class InvalidQueryCommand {
+    private String errMsg;
     private String businessCode;
     private String uriInfo;
 

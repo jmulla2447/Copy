@@ -12,9 +12,10 @@ public class CopyCommandLineRunner implements CommandLineRunner {
 
     private final CopyService copyService;
 
-    public CopyCommandLineRunner(CopyService copyService){
+    public CopyCommandLineRunner(CopyService copyService) {
         this.copyService = copyService;
     }
+
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);

@@ -4,7 +4,9 @@ import com.kamlesh.bhavcopy.service.strategy.CountQueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.GainQueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.QueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.SymbolQueryStrategy;
+import org.springframework.stereotype.Component;
 
+@Component
 public class QueryImpl implements QueryFactory {
 
     @Override

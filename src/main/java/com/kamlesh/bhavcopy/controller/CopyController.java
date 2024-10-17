@@ -29,7 +29,10 @@ public class CopyController {
 
     @PostMapping("/query")
     public ResponseEntity<String> query(@RequestBody CopyQueryRequest request) {
-        String result = bhavcopyService.query(request.getSymbol(), request.getField());
-        return ResponseEntity.ok(result);
+        String queryType = request.getSymbol().toUpperCase();
+        String[] params = new String[]{request.getField()};
+
+        Object result = bhavcopyService.handleQuery(queryType, params);
+        return ResponseEntity.ok(result.toString());
     }
 }

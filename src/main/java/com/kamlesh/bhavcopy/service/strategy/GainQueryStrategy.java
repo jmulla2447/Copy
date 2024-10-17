@@ -1,10 +1,12 @@
 package com.kamlesh.bhavcopy.service.strategy;
 
 import com.kamlesh.bhavcopy.model.CsvRecord;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class GainQueryStrategy implements QueryStrategy {
 
     @Override
