@@ -32,9 +32,8 @@ public class CopyCommandLineRunner implements CommandLineRunner {
 
             String[] parts = command.split("\\s+");
             try {
-                if (parts.length == 2 && parts[0].equalsIgnoreCase("load")) {
-                    String filename = parts[1];
-                    copyService.loadCopy(filename);
+                if (parts.length == 1 && parts[0].equalsIgnoreCase("load")) {
+                    copyService.loadCopy();
                 } else if (parts.length == 3 && parts[0].equalsIgnoreCase("query")) {
                     String queryType = parts[1].toUpperCase();
                     String[] params = new String[parts.length - 2];

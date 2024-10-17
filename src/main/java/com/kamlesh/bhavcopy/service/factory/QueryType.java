@@ -16,15 +16,15 @@ public enum QueryType {
         this.strategy = strategy;
     }
 
-    public QueryStrategy getStrategy() {
-        return strategy;
-    }
-
     public static QueryType fromString(String queryType) {
         try {
             return QueryType.valueOf(queryType.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Unknown query type: " + queryType);
         }
+    }
+
+    public QueryStrategy getStrategy() {
+        return strategy;
     }
 }

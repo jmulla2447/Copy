@@ -1,7 +1,6 @@
 package com.kamlesh.bhavcopy.controller;
 
 import com.kamlesh.bhavcopy.dto.CopyQueryRequest;
-import com.kamlesh.bhavcopy.dto.FileLoadException;
 import com.kamlesh.bhavcopy.service.CopyService;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +13,14 @@ import java.io.IOException;
 @RestController
 public class CopyController {
 
-    public static final String FILENAME = "bhavcopy_file.csv";
     private final CopyService bhavcopyService;
 
     public CopyController(CopyService bhavcopyService) {
         this.bhavcopyService = bhavcopyService;
-
         try {
-            this.bhavcopyService.loadCopy(FILENAME);
+            this.bhavcopyService.loadCopy();
         } catch (IOException | CsvValidationException ex) {
-            throw new FileLoadException("Error loading the file: " + FILENAME, ex);
+            System.out.println(ex.getMessage());
         }
     }
 
