@@ -3,6 +3,8 @@ package com.kamlesh.bhavcopy.controller;
 import com.kamlesh.bhavcopy.dto.CopyQueryRequest;
 import com.kamlesh.bhavcopy.service.CopyService;
 import com.opencsv.exceptions.CsvValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,14 +15,16 @@ import java.io.IOException;
 @RestController
 public class CopyController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CopyController.class);
     private final CopyService bhavcopyService;
+
 
     public CopyController(CopyService bhavcopyService) {
         this.bhavcopyService = bhavcopyService;
         try {
             this.bhavcopyService.loadCopy();
         } catch (IOException | CsvValidationException ex) {
-            System.out.println(ex.getMessage());
+            logger.error(ex.getMessage());
         }
     }
 
