@@ -50,7 +50,7 @@ public class CopyCommandLineRunner implements CommandLineRunner {
         try {
             if (parts.length == 1 && parts[0].equalsIgnoreCase("load")) {
                 handleLoadCommand();
-            } else if (parts.length >= 3 && parts[0].equalsIgnoreCase("query")) {
+            } else if (parts.length >= 2 && parts[0].equalsIgnoreCase("query")) {
                 handleQueryCommand(parts);
             } else {
                 logger.warn("Invalid command format: {}", command);
