@@ -1,6 +1,6 @@
 package com.kamlesh.bhavcopy.service.factory;
 
-import com.kamlesh.bhavcopy.service.strategy.CountQueryStrategy;
+import com.kamlesh.bhavcopy.service.strategy.GenericCountQuery;
 import com.kamlesh.bhavcopy.service.strategy.GainQueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.QueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.StddevQueryStrategy;
@@ -13,6 +13,7 @@ public enum QueryType {
     GAIN(new GainQueryStrategy()),
     TOPBOT(new TopbotQueryStrategy()),
     STDDEV(new StddevQueryStrategy());
+
 
     private final QueryStrategy strategy;
 
