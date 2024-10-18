@@ -16,10 +16,10 @@ import java.util.List;
 @Component
 public class QueryContext {
 
+    private final List<CsvRecord> records = new ArrayList<>();
     @Value("${copy.filename}")
     private Resource filename;
     private QueryStrategy strategy;
-    private final List<CsvRecord> records =  new ArrayList<>();
 
     public void setStrategy(QueryStrategy strategy) {
         this.strategy = strategy;
@@ -35,6 +35,13 @@ public class QueryContext {
                 records.add(row);
             }
         }
+    }
+
+    public List<CsvRecord> getRecords() throws IOException, CsvValidationException {
+        if (records.isEmpty()) {
+            loadCsvFile();
+        }
+        return records;
     }
 
     // Execute the current strategy using the loaded records and query parameters

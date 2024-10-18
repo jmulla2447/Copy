@@ -11,7 +11,7 @@ public class TopbotQueryStrategy implements QueryStrategy {
 
     @Override
     public Object execute(List<CsvRecord> records, String[] params) {
-        double n = Double.parseDouble(params[0]);  // Assuming first parameter is N
+        double n = Double.parseDouble(params[0]);
         List<String> result = new ArrayList<>();
 
         for (CsvRecord record : records) {

@@ -1,10 +1,10 @@
 package com.kamlesh.bhavcopy.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CsvRecord {
-    private final Map<String, String> fields = new HashMap<>();
+    private final Map<String, String> fields = new LinkedHashMap<>();
 
     public CsvRecord(String[] headers, String[] values) {
         for (int i = 0; i < headers.length; i++) {

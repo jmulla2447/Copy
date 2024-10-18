@@ -1,5 +1,7 @@
 package com.kamlesh.bhavcopy.service;
 
+import com.kamlesh.bhavcopy.config.ApplicationConfig;
+import com.kamlesh.bhavcopy.dao.RecordDao;
 import com.kamlesh.bhavcopy.service.factory.QueryContext;
 import com.kamlesh.bhavcopy.service.factory.QueryFactory;
 import com.opencsv.exceptions.CsvValidationException;
@@ -12,14 +14,22 @@ public class CopyService {
 
     private final QueryContext queryContext;
     private final QueryFactory queryFactory;
+    private final RecordDao dao;
+    private ApplicationConfig config;
 
-    public CopyService(QueryContext queryContext, QueryFactory queryFactory) {
+    public CopyService(QueryContext queryContext, QueryFactory queryFactory, RecordDao dao, ApplicationConfig applicationConfig) {
         this.queryContext = queryContext;
         this.queryFactory = queryFactory;
+        this.dao = dao;
+        this.config = applicationConfig;
     }
 
     public void loadCopy() throws IOException, CsvValidationException {
-        queryContext.loadCsvFile();
+        if (config.isEnabled()) {
+            dao.loadCsvFile(queryContext.getRecords());
+        } else {
+            queryContext.loadCsvFile();
+        }
     }
 
     public Object handleQuery(String queryType, String[] params) {
