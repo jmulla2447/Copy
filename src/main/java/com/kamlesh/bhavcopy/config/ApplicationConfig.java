@@ -7,9 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "save.to.db")
 public class ApplicationConfig {
     private boolean enabled;
-    private int retry; // You can add other properties as needed
+    private int retry;
 
-    // Getters and setters
     public boolean isEnabled() {
         return enabled;
     }

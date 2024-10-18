@@ -11,6 +11,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @Entity
+@Table(name = "csv_records")
 public class CsvRecordEntity {
 
     @Id
