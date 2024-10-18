@@ -19,7 +19,7 @@ public class QueryContext {
     @Value("${copy.filename}")
     private Resource filename;
     private QueryStrategy strategy;
-    private List<CsvRecord> records =  new ArrayList<>();
+    private final List<CsvRecord> records =  new ArrayList<>();
 
     public void setStrategy(QueryStrategy strategy) {
         this.strategy = strategy;
@@ -31,8 +31,8 @@ public class QueryContext {
 
             String[] values;
             while ((values = reader.readNext()) != null) {
-                CsvRecord record = new CsvRecord(headers, values);
-                records.add(record);
+                CsvRecord row = new CsvRecord(headers, values);
+                records.add(row);
             }
         }
     }
