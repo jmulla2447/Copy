@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -18,18 +19,10 @@ public class QueryContext {
     @Value("${copy.filename}")
     private Resource filename;
     private QueryStrategy strategy;
-    private List<CsvRecord> records;
+    private List<CsvRecord> records =  new ArrayList<>();
 
     public void setStrategy(QueryStrategy strategy) {
         this.strategy = strategy;
-    }
-
-    public List<CsvRecord> getRecords() {
-        return records;
-    }
-
-    public void setRecords(List<CsvRecord> records) {
-        this.records = records;
     }
 
     public void loadCsvFile() throws IOException, CsvValidationException {
