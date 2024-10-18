@@ -1,13 +1,13 @@
 package com.kamlesh.bhavcopy.service.factory;
 
-import com.kamlesh.bhavcopy.service.strategy.CountQueryStrategy;
+import com.kamlesh.bhavcopy.service.strategy.GenericCountQuery;
 import com.kamlesh.bhavcopy.service.strategy.GainQueryStrategy;
 import com.kamlesh.bhavcopy.service.strategy.QueryStrategy;
-import com.kamlesh.bhavcopy.service.strategy.SymbolQueryStrategy;
+import com.kamlesh.bhavcopy.service.strategy.GenericQuery;
 
 public enum QueryType {
-    SYMBOL(new SymbolQueryStrategy()),
-    COUNT(new CountQueryStrategy()),
+    SYMBOL(new GenericQuery()),
+    COUNT(new GenericCountQuery()),
     GAIN(new GainQueryStrategy());
 
     private final QueryStrategy strategy;
