@@ -16,15 +16,16 @@ public class GainQueryStrategy implements QueryStrategy {
 
         for (CsvRecord record : records) {
             try {
-                double open = Double.parseDouble(record.getField("OPEN"));
-                double close = Double.parseDouble(record.getField("CLOSE"));
+                double open = Double.parseDouble(record.getField("OPEN_PRICE"));
+                double close = Double.parseDouble(record.getField("CLOSE_PRICE"));
                 double gain = ((close - open) / open) * 100;
 
                 if (gain > n) {
                     result.add(record.getField("SYMBOL"));
                 }
             } catch (NumberFormatException e) {
-                // Handle parsing error
+                //TODO: Print exception log here
+                continue;
             }
         }
         return result;
