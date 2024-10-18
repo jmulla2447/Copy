@@ -15,14 +15,14 @@ public abstract class AbstractQuery implements QueryStrategy {
         }
 
         String column = params[0];
-        String value = getValueOrDefault(params, 1);
+        String value = getValueOrDefault(params);
 
         return executeQuery(records, column, value);
     }
 
-    private String getValueOrDefault(String[] params, int index) {
-        if (params.length > index && params[index] != null && !params[index].isEmpty()) {
-            return params[index];
+    private String getValueOrDefault(String[] params) {
+        if (params.length > 1 && params[1] != null && !params[1].isEmpty()) {
+            return params[1];
         }
         return DEFAULT_COL;
     }
