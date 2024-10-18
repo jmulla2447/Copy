@@ -12,7 +12,7 @@ public class CountQueryStrategy implements QueryStrategy {
     public Object execute(List<CsvRecord> records, String[] params) {
         String series = params[0];  // Assuming first parameter is the series
         return records.parallelStream()
-                .filter(record -> record.getField("SERIES").equalsIgnoreCase(series))
+                .filter(row -> row.getField("SERIES").equalsIgnoreCase(series))
                 .count();
     }
 }

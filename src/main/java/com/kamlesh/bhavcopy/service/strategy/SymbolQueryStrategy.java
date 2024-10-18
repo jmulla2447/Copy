@@ -11,9 +11,9 @@ public class SymbolQueryStrategy implements QueryStrategy {
     @Override
     public Object execute(List<CsvRecord> records, String[] params) {
         String symbol = params[0];
-        for (CsvRecord record : records) {
-            if (record.getField("SYMBOL").equalsIgnoreCase(symbol)) {
-                return record.toCsvString();
+        for (CsvRecord row : records) {
+            if (row.getField("SYMBOL").equalsIgnoreCase(symbol)) {
+                return row.toCsvString();
             }
         }
         return "Symbol not found";

@@ -14,14 +14,14 @@ public class GainQueryStrategy implements QueryStrategy {
         double n = Double.parseDouble(params[0]);  // Assuming first parameter is N
         List<String> result = new ArrayList<>();
 
-        for (CsvRecord record : records) {
+        for (CsvRecord row : records) {
             try {
-                double open = Double.parseDouble(record.getField("OPEN_PRICE"));
-                double close = Double.parseDouble(record.getField("CLOSE_PRICE"));
+                double open = Double.parseDouble(row.getField("OPEN_PRICE"));
+                double close = Double.parseDouble(row.getField("CLOSE_PRICE"));
                 double gain = ((close - open) / open) * 100;
 
                 if (gain > n) {
-                    result.add(record.getField("SYMBOL"));
+                    result.add(row.getField("SYMBOL"));
                 }
             } catch (NumberFormatException e) {
                 //TODO: Print exception log here

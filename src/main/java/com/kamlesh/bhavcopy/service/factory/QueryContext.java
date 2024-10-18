@@ -42,7 +42,7 @@ public class QueryContext {
         if (strategy == null) {
             throw new IllegalStateException("Query strategy has not been set.");
         }
-        if (records == null || records.isEmpty()) {
+        if (records.isEmpty()) {
             throw new IllegalStateException("No CSV records loaded into the context.");
         }
         return strategy.execute(records, params);
