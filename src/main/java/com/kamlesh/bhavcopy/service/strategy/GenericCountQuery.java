@@ -6,17 +6,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class GenericCountQuery implements QueryStrategy {
+public class GenericCountQuery extends AbstractQuery {
 
     @Override
-    public Object execute(List<CsvRecord> records, String[] params) {
-        if (params.length < 2) {
-            throw new IllegalArgumentException("Invalid number of parameters. Expected: <column> <value>");
-        }
-
-        String column = params[0];  // The column to search in (e.g., "SERIES", "MARKET", etc.)
-        String value = params[1];   // The value to search for in the specified column
-
+    protected Object executeQuery(List<CsvRecord> records, String column, String value) {
+        // Count the records where the specified column matches the value
         return records.parallelStream()
                 .filter(row -> row.getField(column).equalsIgnoreCase(value))
                 .count();
