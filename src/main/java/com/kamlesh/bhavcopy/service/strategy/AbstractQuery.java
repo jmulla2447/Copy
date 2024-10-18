@@ -8,14 +8,18 @@ public abstract class AbstractQuery implements QueryStrategy {
 
     public static final String DEFAULT_COL = "SYMBOL";
 
+    protected String getDefaultColumn() {
+        return DEFAULT_COL;
+    }
+
     @Override
     public Object execute(List<CsvRecord> records, String[] params) {
-        if (params.length < 2) {
+        if (params.length < 1) {
             throw new IllegalArgumentException("Invalid number of parameters. Expected: <column> <value>");
         }
 
-        String column = params[0];
-        String value = getValueOrDefault(params);
+        String value = params[0];
+        String column = getValueOrDefault(params);
 
         return executeQuery(records, column, value);
     }
@@ -24,7 +28,7 @@ public abstract class AbstractQuery implements QueryStrategy {
         if (params.length > 1 && params[1] != null && !params[1].isEmpty()) {
             return params[1];
         }
-        return DEFAULT_COL;
+        return getDefaultColumn();
     }
 
 

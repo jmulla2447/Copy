@@ -9,6 +9,11 @@ import java.util.List;
 public class GenericCountQuery extends AbstractQuery {
 
     @Override
+    protected String getDefaultColumn() {
+        return "SERIES"; // Default column for count queries
+    }
+
+    @Override
     protected Object executeQuery(List<CsvRecord> records, String column, String value) {
         // Count the records where the specified column matches the value
         return records.parallelStream()
