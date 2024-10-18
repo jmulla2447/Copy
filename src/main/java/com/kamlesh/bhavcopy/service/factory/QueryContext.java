@@ -1,4 +1,4 @@
-package com.kamlesh.bhavcopy.service;
+package com.kamlesh.bhavcopy.service.factory;
 
 import com.kamlesh.bhavcopy.model.CsvRecord;
 import com.kamlesh.bhavcopy.service.strategy.QueryStrategy;
@@ -17,7 +17,7 @@ public class QueryContext {
     }
 
     // Execute the current strategy with the given records and parameters
-    public Object executeStrategy(List<CsvRecord> records, String[] params) {
+    public Object executeQuery(List<CsvRecord> records, String[] params) {
         return strategy.execute(records, params);
     }
 }

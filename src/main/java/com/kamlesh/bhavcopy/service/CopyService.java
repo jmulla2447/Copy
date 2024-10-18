@@ -1,8 +1,8 @@
 package com.kamlesh.bhavcopy.service;
 
 import com.kamlesh.bhavcopy.model.CsvRecord;
+import com.kamlesh.bhavcopy.service.factory.QueryContext;
 import com.kamlesh.bhavcopy.service.factory.QueryFactory;
-import com.kamlesh.bhavcopy.service.strategy.QueryStrategy;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,15 +18,13 @@ import java.util.List;
 public class CopyService {
 
     private final List<CsvRecord> records = new ArrayList<>();  // Loaded records
-    private final QueryContext context;  // Context for strategies
     private final QueryFactory queryFactory;  // Factory to create strategies
     @Value("${copy.filename}")
     private Resource filename;
 
     // Constructor injection of QueryFactory and QueryContext
-    public CopyService(QueryFactory queryFactory, QueryContext queryContext) {
+    public CopyService(QueryFactory queryFactory) {
         this.queryFactory = queryFactory;
-        this.context = queryContext;
     }
 
     public void loadCopy() throws IOException, CsvValidationException {
@@ -43,12 +41,9 @@ public class CopyService {
 
     public Object handleQuery(String queryType, String[] params) {
         // Get the strategy from the factory
-        QueryStrategy strategy = queryFactory.getStrategy(queryType);
-
-        // Set the strategy in the context
-        context.setStrategy(strategy);
+        QueryContext context = queryFactory.getContext(queryType);
 
         // Execute the strategy
-        return context.executeStrategy(records, params);
+        return context.executeQuery(records, params);
     }
 }
