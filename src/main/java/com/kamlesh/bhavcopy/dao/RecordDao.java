@@ -6,7 +6,6 @@ import com.kamlesh.bhavcopy.repository.RecordRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class RecordDao {
     }
 
     @Transactional
-    public void loadCsvFile(List<CsvRecord> csvRecords) throws IOException {
+    public void loadCsvFile(List<CsvRecord> csvRecords) {
         List<CsvRecordEntity> batchList = new ArrayList<>();
         int count = 0;
 
