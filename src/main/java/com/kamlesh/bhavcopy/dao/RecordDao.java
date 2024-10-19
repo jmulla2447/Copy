@@ -33,24 +33,24 @@ public class RecordDao {
         int count = 0;
 
         for (CsvRecord csvRecord : csvRecords) {
-            CsvRecordEntity record = new CsvRecordEntity();
+            CsvRecordEntity row = new CsvRecordEntity();
 
-            record.setMarket(csvRecord.getField("MARKET"));
-            record.setSeries(csvRecord.getField("SERIES"));
-            record.setSymbol(csvRecord.getField("SYMBOL"));
-            record.setSecurity(csvRecord.getField("SECURITY"));
-            record.setPrevClosePrice(Double.parseDouble(csvRecord.getField("PREV_CL_PR")));
-            record.setOpenPrice(Double.parseDouble(csvRecord.getField("OPEN_PRICE")));
-            record.setHighPrice(Double.parseDouble(csvRecord.getField("HIGH_PRICE")));
-            record.setLowPrice(Double.parseDouble(csvRecord.getField("LOW_PRICE")));
-            record.setClosePrice(Double.parseDouble(csvRecord.getField("CLOSE_PRICE")));
-            record.setNetTradedValue(Double.parseDouble(csvRecord.getField("NET_TRDVAL")));
-            record.setNetTradedQuantity(Double.parseDouble(csvRecord.getField("NET_TRDQTY")));
-            record.setCorpInd(csvRecord.getField("CORP_IND"));
-            record.setHigh52Week(Double.parseDouble(csvRecord.getField("HI_52_WK")));
-            record.setLow52Week(Double.parseDouble(csvRecord.getField("LO_52_WK")));
+            row.setMarket(csvRecord.getField("MARKET"));
+            row.setSeries(csvRecord.getField("SERIES"));
+            row.setSymbol(csvRecord.getField("SYMBOL"));
+            row.setSecurity(csvRecord.getField("SECURITY"));
+            row.setPrevClosePrice(Double.parseDouble(csvRecord.getField("PREV_CL_PR")));
+            row.setOpenPrice(Double.parseDouble(csvRecord.getField("OPEN_PRICE")));
+            row.setHighPrice(Double.parseDouble(csvRecord.getField("HIGH_PRICE")));
+            row.setLowPrice(Double.parseDouble(csvRecord.getField("LOW_PRICE")));
+            row.setClosePrice(Double.parseDouble(csvRecord.getField("CLOSE_PRICE")));
+            row.setNetTradedValue(Double.parseDouble(csvRecord.getField("NET_TRDVAL")));
+            row.setNetTradedQuantity(Double.parseDouble(csvRecord.getField("NET_TRDQTY")));
+            row.setCorpInd(csvRecord.getField("CORP_IND"));
+            row.setHigh52Week(Double.parseDouble(csvRecord.getField("HI_52_WK")));
+            row.setLow52Week(Double.parseDouble(csvRecord.getField("LO_52_WK")));
 
-            batchList.add(record);
+            batchList.add(row);
 
             if (++count % BATCH_SIZE == 0) {
                 recordRepository.saveAll(batchList);

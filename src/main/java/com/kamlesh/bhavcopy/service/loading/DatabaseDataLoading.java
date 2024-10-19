@@ -22,7 +22,7 @@ public class DatabaseDataLoading implements DataLoadingStrategy {
 
     @Override
     public Object handleQuery(String queryType, String[] params) {
-        return dao.handleQuery(queryType,params);
+        return dao.handleQuery(queryType, params);
     }
 
     @Override
