@@ -26,11 +26,7 @@ public class DatabaseDataLoading implements DataLoadingStrategy {
     }
 
     @Override
-    public void loading() {
-        try {
-            dao.loadCsvFile(queryContext.getRecords());
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+    public void loading() throws IOException, CsvValidationException {
+        dao.loadCsvFile(queryContext.getRecords());
     }
 }

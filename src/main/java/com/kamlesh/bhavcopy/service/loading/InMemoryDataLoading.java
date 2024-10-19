@@ -23,11 +23,7 @@ public class InMemoryDataLoading implements DataLoadingStrategy {
     }
 
     @Override
-    public void loading() {
-        try {
-            queryContext.loadCsvFile();
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+    public void loading() throws IOException, CsvValidationException {
+        queryContext.loadCsvFile();
     }
 }
