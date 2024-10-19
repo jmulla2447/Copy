@@ -19,8 +19,12 @@ public class RecordDao {
         this.recordRepository = recordRepository;
     }
 
-    public List<CsvRecord>  handleQuery(String queryType, String[] params) {
-        return null ;
+    public List<String> handleQuery(String queryType, String[] params) {
+        String param1 = params.length > 0 ? params[0] : null;
+        Double param2 = params.length > 1 ? Double.parseDouble(params[1]) : null;
+
+        // Call the stored procedure using the repository
+        return recordRepository.handleQuery(queryType, param1, param2);
     }
 
     @Transactional

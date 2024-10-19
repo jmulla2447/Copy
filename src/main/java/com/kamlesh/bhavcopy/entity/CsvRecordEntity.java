@@ -12,6 +12,16 @@ import java.util.UUID;
 @ToString
 @Entity
 @Table(name = "csv_records")
+@NamedStoredProcedureQuery(
+        name = "handle_query",
+        procedureName = "handle_query",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "query_type", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "param1", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "param2", type = Double.class)
+        },
+        resultClasses = {String.class}
+)
 public class CsvRecordEntity {
 
     @Id

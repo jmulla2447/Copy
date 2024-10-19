@@ -16,7 +16,7 @@ public class CopyService {
 
     public CopyService(DataLoadingFactory strategyFactory) {
         this.strategyFactory = strategyFactory;
-        this.strategy = strategyFactory.getStrategy();
+        this.strategy = this.strategyFactory.getStrategy();
     }
 
     public void loadCopy() throws IOException, CsvValidationException {
