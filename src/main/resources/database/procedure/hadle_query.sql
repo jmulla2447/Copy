@@ -10,9 +10,6 @@ RETURNS TABLE(
     result TEXT
 ) AS $$
 BEGIN
-    -- Procedure logic goes here...
-    -- You can implement logic for SYMBOL, COUNT, GAIN, etc.
-    -- Example:
     IF query_type = 'SYMBOL' THEN
         RETURN QUERY
         SELECT symbol || ',' || series || ',' || close_price || ',' || open_price
@@ -25,7 +22,17 @@ BEGIN
         FROM csv_records
         WHERE series = param1;
 
-    -- Add additional logic here for GAIN, TOPBOT, STDDEV
+    ELSIF query_type = 'GAIN' THEN
+        RETURN QUERY
+        SELECT STRING_AGG(symbol, ',')
+        FROM csv_records
+        WHERE ((close_price - open_price) / open_price) * 100 > param2;
+
+    ELSIF query_type = 'TOPBOT' THEN
+        RETURN QUERY
+        SELECT STRING_AGG(symbol, ',')
+        FROM csv_records
+        WHERE ((high_price - low_price) / low_price) * 100 > param2;
 
     END IF;
 END;
