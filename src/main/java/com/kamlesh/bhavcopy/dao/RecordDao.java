@@ -19,6 +19,10 @@ public class RecordDao {
         this.recordRepository = recordRepository;
     }
 
+    public List<CsvRecord>  handleQuery(String queryType, String[] params) {
+        return null ;
+    }
+
     @Transactional
     public void loadCsvFile(List<CsvRecord> csvRecords) {
         List<CsvRecordEntity> batchList = new ArrayList<>();
